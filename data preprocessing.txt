@@ -1,0 +1,35 @@
+import pandas as pd
+#import dataset
+df = pd.read_csv("/Heart.csv")
+df
+
+# Find the description of data in the data frame
+# Count the number of rows that are having no value from each column
+df.describe()
+
+#  Print the number of columns, column labels, column data types from the data frame
+df.info()
+
+# Replace the value 0 with NAN
+df.replace(0,'NAN')
+
+# Remove the rows with the missing values
+df.dropna()
+
+# Impute the missing data with mean values
+df.fillna(df.mean())
+
+# Assign values to x excepting the last column
+x=df.iloc[:,0:14].values
+x
+
+#Assign values to y
+y=df.iloc[:,14].values
+y
+
+# Split the dataset into Training : Testing (80:20)
+
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test  = train_test_split(x,y,test_size = 0.2, random_state=0)
+print (x_train.shape)
+print (x_test.shape)
